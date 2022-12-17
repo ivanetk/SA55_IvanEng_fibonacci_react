@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import InputElement from "./InputElement";
+import DisplaySequences from "./DisplaySequences";
 
 function App() {
+  const [fibonacci, updateFibonacci] = useState([]);
+  const [sorted, updateSorted] = useState([]);
+
+  const updateResults = (fiboArr, sortArr) => {
+    updateFibonacci(fiboArr);
+    updateSorted(sortArr);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h4>Fibonacci Sequence Generator</h4>
+      <InputElement updateResults={updateResults} />
+      <DisplaySequences fibonacci={fibonacci} sorted={sorted} />
     </div>
   );
 }
